@@ -1,0 +1,137 @@
+---
+# Producer KafkaUser
+apiVersion: kafka.strimzi.io/v1beta2
+kind: KafkaUser
+metadata:
+  name: my-producer
+  namespace: kafka
+  labels:
+    strimzi.io/cluster: my-cluster
+spec:
+  authentication:
+    type: scram-sha-512
+  authorization:
+    type: simple
+    acls:
+      - resource:
+          type: topic
+          name: my-topic
+          patternType: literal
+        operations:
+          - Write
+          - Describe
+        host: "*"
+---
+# Consumer KafkaUser
+apiVersion: kafka.strimzi.io/v1beta2
+kind: KafkaUser
+metadata:
+  name: my-consumer
+  namespace: kafka
+  labels:
+    strimzi.io/cluster: my-cluster
+spec:
+  authentication:
+    type: scram-sha-512
+  authorization:
+    type: simple
+    acls:
+      - resource:
+          type: topic
+          name: my-topic
+          patternType: literal
+        operations:
+          - Read
+          - Describe
+        host: "*"
+      - resource:
+          type: group
+          name: my-service-consumer-group
+          patternType: literal
+        operations:
+          - Read
+        host: "*"
+---
+# Transactional Producer KafkaUser (EOS)
+apiVersion: kafka.strimzi.io/v1beta2
+kind: KafkaUser
+metadata:
+  name: my-transactional-producer
+  namespace: kafka
+  labels:
+    strimzi.io/cluster: my-cluster
+spec:
+  authentication:
+    type: scram-sha-512
+  authorization:
+    type: simple
+    acls:
+      - resource:
+          type: topic
+          name: my-topic
+          patternType: literal
+        operations:
+          - Write
+          - Describe
+        host: "*"
+      - resource:
+          type: transactionalId
+          name: my-service-transactional-producer   # transactional.id prefix
+          patternType: prefix
+        operations:
+          - Write
+        host: "*"
+      - resource:
+          type: group
+          name: my-service-eos-consumer-group
+          patternType: literal
+        operations:
+          - Read
+        host: "*"
+---
+# 관리자용 KafkaUser (Topic 생성/삭제 권한)
+apiVersion: kafka.strimzi.io/v1beta2
+kind: KafkaUser
+metadata:
+  name: my-admin
+  namespace: kafka
+  labels:
+    strimzi.io/cluster: my-cluster
+spec:
+  authentication:
+    type: scram-sha-512
+  authorization:
+    type: simple
+    acls:
+      - resource:
+          type: topic
+          name: "*"
+          patternType: literal
+        operations:
+          - Read
+          - Write
+          - Create
+          - Delete
+          - Describe
+          - Alter
+          - DescribeConfigs
+          - AlterConfigs
+        host: "*"
+      - resource:
+          type: group
+          name: "*"
+          patternType: literal
+        operations:
+          - Read
+          - Describe
+          - Delete
+        host: "*"
+      - resource:
+          type: cluster
+          name: kafka-cluster
+          patternType: literal
+        operations:
+          - Describe
+          - AlterConfigs
+          - DescribeConfigs
+        host: "*"

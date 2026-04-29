@@ -1,0 +1,50 @@
+apiVersion: kafka.strimzi.io/v1beta2
+kind: KafkaTopic
+metadata:
+  name: my-topic
+  namespace: kafka
+  labels:
+    strimzi.io/cluster: my-cluster   # 필수: 대상 클러스터
+spec:
+  partitions: 12                     # 파티션 수 (늘릴 수만 있고 줄일 수 없음)
+  replicas: 3                        # Replication Factor
+  config:
+    retention.ms: "604800000"        # 7일 보존
+    min.insync.replicas: "2"         # acks=all 시 최소 동기화 복제본
+    compression.type: "lz4"          # Broker 측 압축 (lz4: 속도/압축률 균형)
+    cleanup.policy: "delete"         # delete(기본) 또는 compact
+    max.message.bytes: "1048576"     # 최대 메시지 크기 1MB
+---
+# Log Compaction Topic 예시 (CDC, 설정 이벤트용)
+apiVersion: kafka.strimzi.io/v1beta2
+kind: KafkaTopic
+metadata:
+  name: my-compacted-topic
+  namespace: kafka
+  labels:
+    strimzi.io/cluster: my-cluster
+spec:
+  partitions: 6
+  replicas: 3
+  config:
+    cleanup.policy: "compact"
+    min.cleanable.dirty.ratio: "0.1"
+    segment.ms: "86400000"           # 1일마다 세그먼트 롤링
+    delete.retention.ms: "86400000"  # Tombstone 메시지 1일 유지
+    min.insync.replicas: "2"
+---
+# DLQ (Dead Letter Queue) Topic 예시
+apiVersion: kafka.strimzi.io/v1beta2
+kind: KafkaTopic
+metadata:
+  name: my-topic-dlq
+  namespace: kafka
+  labels:
+    strimzi.io/cluster: my-cluster
+spec:
+  partitions: 6
+  replicas: 3
+  config:
+    retention.ms: "2592000000"       # 30일 보존 (DLQ는 더 길게)
+    min.insync.replicas: "2"
+    compression.type: "lz4"
