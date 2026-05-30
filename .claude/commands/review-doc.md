@@ -15,7 +15,7 @@ description: 기존 Kafka 문서를 검토하고 개선점을 제안합니다. �
 - [ ] 플레이스홀더가 `<VALUE>` 형식으로 명확히 표시됐는지
 - [ ] kafka-topics.sh 예시에 `--bootstrap-server` 가 포함됐는지
 
-### 3. 보안 검토 (`rules/security-checklist.md` 기준)
+### 3. 보안 검토 (`docs/rules/security-checklist.md` 기준)
 - [ ] ACL 예시가 최소 권한 원칙을 따르는지
 - [ ] SASL/TLS 설정 권장 여부가 명시됐는지
 - [ ] 와일드카드 리소스 사용 시 주의 문구가 있는지
