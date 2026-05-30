@@ -73,7 +73,7 @@ Topic 설계, Producer/Consumer 설정, 보안, 운영 안정성 4가지 축을 
 
 ## 참조 문서
 
-- `docs/guides/core-concepts/topic-partition-design.md` — 파티션 설계 원칙
-- `docs/guides/producer-consumer/producer-config.md` — Producer 안정성 설정
-- `docs/guides/security/sasl-authentication.md` — 인증 설정
-- `docs/guides/observability/consumer-lag-monitoring.md` — Lag 모니터링
+- `docs/core-concepts/topic-partition-design.md` — 파티션 설계 원칙
+- `docs/producer-consumer/producer-config.md` — Producer 안정성 설정
+- `docs/security/sasl-authentication.md` — 인증 설정
+- `docs/observability/consumer-lag-monitoring.md` — Lag 모니터링
