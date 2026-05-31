@@ -29,15 +29,12 @@ kafka-practice/
 │   └── agents/                         # Claude 전문 에이전트
 ├── ops/
 │   └── config/                         # Kafka/Strimzi 설정 예제 YAML
-└── .claude/
-    ├── settings.json                  # 프로젝트 공유 설정
-    └── commands/                      # 커스텀 슬래시 커맨드
-        ├── new-doc.md                 # /new-doc
-        ├── new-runbook.md             # /new-runbook
-        ├── review-doc.md              # /review-doc
-        ├── add-troubleshooting.md     # /add-troubleshooting
-        └── search-kb.md               # /search-kb
+├── CLAUDE.md                           # Claude 작업 기준
+├── AGENTS.md                           # Codex 작업 기준
+└── .gitignore                          # 로컬/민감 파일 제외 규칙
 ```
+
+`.claude/`는 Claude Code 로컬 워크스페이스입니다. 개인 설정, 임시 커맨드, 로컬 세션 정보가 섞일 수 있으므로 Git에 커밋하지 않습니다.
 
 ---
 
