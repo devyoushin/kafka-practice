@@ -27,9 +27,9 @@ Kafka 운영 경험 기반의 기술 문서를 작성하는 전문 에이전트�
 
 ## 참조 규칙 파일
 
-- `docs/rules/doc-writing.md` — 문서 작성 스타일
-- `docs/rules/kafka-conventions.md` — CLI/YAML/Properties 코드 규칙
-- `docs/rules/security-checklist.md` — 보안 검토 기준
+- `docs/90-standards/doc-writing.md` — 문서 작성 스타일
+- `docs/90-standards/kafka-conventions.md` — CLI/YAML/Properties 코드 규칙
+- `docs/90-standards/security-checklist.md` — 보안 검토 기준
 
 ## 사용 방법
 

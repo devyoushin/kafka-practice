@@ -44,8 +44,8 @@ kafka-practice/
 |--------|--------|------|
 | `/new-doc` | `/new-doc core-concepts replication-factor` | 신규 문서 스캐폴딩 |
 | `/new-runbook` | `/new-runbook operations consumer-lag-reset` | 운영 Runbook 생성 |
-| `/review-doc` | `/review-doc docs/security/sasl-authentication.md` | 문서 품질 검토 |
-| `/add-troubleshooting` | `/add-troubleshooting docs/operations/kafka-rebalance.md <증상>` | 트러블슈팅 추가 |
+| `/review-doc` | `/review-doc docs/05-security/sasl-authentication.md` | 문서 품질 검토 |
+| `/add-troubleshooting` | `/add-troubleshooting docs/03-operations/kafka-rebalance.md <증상>` | 트러블슈팅 추가 |
 | `/search-kb` | `/search-kb consumer lag` | 지식 베이스 키워드 검색 |
 
 ---
@@ -58,7 +58,7 @@ docs/{카테고리}/{주제}.md
 
 - 카테고리: `core-concepts`, `producer-consumer`, `operations`, `security`, `observability`
 - 주제: 소문자 영어, 하이픈 구분
-- 예시: `docs/operations/topic-compaction.md`, `docs/security/oauth-authentication.md`
+- 예시: `docs/03-operations/topic-compaction.md`, `docs/05-security/oauth-authentication.md`
 
 ---
 
@@ -70,41 +70,41 @@ docs/{카테고리}/{주제}.md
 4. **한국어 기술 문서** — 주요 개념은 영어 원문 병기
 5. **모니터링 필수** — 모든 문서에 JMX/Prometheus 지표 또는 진단 명령어 포함
 
-세부 규칙은 `docs/rules/` 디렉토리를 참조합니다.
+세부 규칙은 `docs/90-standards/` 디렉토리를 참조합니다.
 
 ---
 
 ## 카테고리별 문서 목록
 
-### docs/core-concepts/
+### docs/01-core-concepts/
 | 파일 | 주제 |
 |------|------|
 | `kafka-architecture.md` | Kafka 아키텍처 — Broker, Topic, Partition, Offset, KRaft |
 | `topic-partition-design.md` | Topic/Partition 설계 원칙 — 파티션 수 산정, 복제 인수, 리텐션 |
 | `consumer-group.md` | Consumer Group — 리밸런싱, 오프셋 커밋, 파티션 할당 전략 |
 
-### docs/producer-consumer/
+### docs/02-producer-consumer/
 | 파일 | 주제 |
 |------|------|
 | `producer-config.md` | Producer 핵심 설정 — acks, batch.size, linger.ms, compression |
 | `consumer-config.md` | Consumer 핵심 설정 — fetch.min.bytes, max.poll.records, session.timeout |
 | `exactly-once-semantics.md` | Exactly-Once 시맨틱 — Idempotent Producer, Transactional API |
 
-### docs/operations/
+### docs/03-operations/
 | 파일 | 주제 |
 |------|------|
 | `topic-management.md` | Topic 관리 — 생성/수정/삭제, 파티션 증가, 설정 변경 |
 | `consumer-lag-management.md` | Consumer Lag 관리 — Lag 측정, 대응 전략, 오프셋 리셋 절차 |
 | `kafka-rebalance.md` | Partition Rebalance — Reassignment, Throttle, 운영 주의사항 |
 
-### docs/security/
+### docs/05-security/
 | 파일 | 주제 |
 |------|------|
 | `sasl-authentication.md` | SASL 인증 — SCRAM-SHA-512, Strimzi KafkaUser |
 | `tls-encryption.md` | TLS 암호화 — 인증서 구성, mTLS, Strimzi 자동 인증서 관리 |
 | `acl-authorization.md` | ACL 인가 — kafka-acls.sh, Strimzi KafkaUser ACL, 최소 권한 |
 
-### docs/observability/
+### docs/04-observability/
 | 파일 | 주제 |
 |------|------|
 | `kafka-metrics.md` | Kafka JMX 지표 — Broker/Producer/Consumer 핵심 지표, Prometheus 연동 |
@@ -114,8 +114,8 @@ docs/{카테고리}/{주제}.md
 
 ## 추가 예정 주제 (백로그)
 
-- `docs/core-concepts/kraft-mode.md` — KRaft 모드 (Zookeeper 제거), 마이그레이션
-- `docs/operations/kafka-upgrade.md` — Kafka 버전 업그레이드 전략 (Strimzi)
-- `docs/producer-consumer/schema-registry.md` — Confluent Schema Registry, Avro/Protobuf
-- `docs/observability/kafka-ui.md` — Kafka UI 설치 및 활용
-- `docs/operations/topic-compaction.md` — Log Compaction, Cleanup Policy
+- `docs/01-core-concepts/kraft-mode.md` — KRaft 모드 (Zookeeper 제거), 마이그레이션
+- `docs/03-operations/kafka-upgrade.md` — Kafka 버전 업그레이드 전략 (Strimzi)
+- `docs/02-producer-consumer/schema-registry.md` — Confluent Schema Registry, Avro/Protobuf
+- `docs/04-observability/kafka-ui.md` — Kafka UI 설치 및 활용
+- `docs/03-operations/topic-compaction.md` — Log Compaction, Cleanup Policy
